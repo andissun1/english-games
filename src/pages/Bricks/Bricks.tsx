@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { bricksActions, bricksSelectors } from '../../store/bricksReducer';
 import AnimatedNumber from 'react-animated-numbers';
 import React, { useState } from 'react';
+import { getRandomNumber } from '../../utils';
 
 export const Bricks = () => {
   const numbers = useAppSelector(bricksSelectors.numbers);
@@ -41,60 +42,95 @@ export const Bricks = () => {
   };
 
   const updateNumbers = () => {
-    let currentFields = [];
-    for (let index in fields) if (!fields[index].isOpen) currentFields.push(index);
+    const newArray = new Array(getRandomNumber(1, 5), getRandomNumber(1, 5));
 
-    let numbers = new Array(
-      Math.floor(Math.random() * 5 + 1),
-      Math.floor(Math.random() * 5 + 1)
+    console.log(
+      newArray[0] == numbers.firstNumber || newArray[1] === numbers.secondNumber
     );
 
-    let sum = numbers[0] * numbers[1] + 1;
+    if (newArray[0] == numbers.firstNumber || newArray[1] === numbers.secondNumber) {
+      dispatch(bricksActions.setNumbers([0, 0]));
 
-    if (sum > currentFields.length || !currentFields.includes(String(sum))) {
-      const randomIndex = Math.floor(Math.random() * currentFields.length);
-      const target = Number(currentFields[randomIndex]) + 1;
-      numbers = [1, target];
+      setTimeout(() => {
+        dispatch(bricksActions.setNumbers(newArray));
+      }, 100);
+    } else {
+      dispatch(bricksActions.setNumbers(newArray));
     }
-
-    dispatch(bricksActions.setNumbers(numbers));
   };
+
+  const arrayOfFields = Object.values(fields);
+  const rows = [
+    arrayOfFields.slice(0, 5),
+    arrayOfFields.slice(5, 10),
+    arrayOfFields.slice(10, 15),
+    arrayOfFields.slice(15, 20),
+    arrayOfFields.slice(20, 25),
+  ];
 
   return (
     <div className={style.Bricks}>
       <Link to={'/games'}>✕</Link>
       <div className={style.board}>
-        {Object.entries(fields).map(([key, value]) => (
-          <div
-            key={key}
-            id={key}
-            className={style.field}
-            onClick={(_) => toggleCard(key)}
-            style={{
-              backgroundColor: fields[key].isOpen
-                ? 'rgba(0, 0, 0, 0.3)'
-                : 'rgba(255, 255, 255, 0.9)',
-              color: fields[key].isOpen ? 'white' : 'black',
-            }}
-          >
-            {isOpenEditor ? (
-              <>
-                <input
-                  type="text"
-                  name={String(key)}
-                  defaultValue={value.value}
-                  onChange={handleChange}
-                  onClick={(event) => event.stopPropagation()}
-                />
-                {/* <span className={style.smallText}>{Number(key) + 1}</span> */}
-              </>
-            ) : (
-              <span onClick={(_) => toggleCard(key)}>
-                {value.isOpen ? value.value : Number(key) + 1}
-              </span>
-            )}
-          </div>
-        ))}
+        <table>
+          <colgroup>
+            <col className={style.firstColumn} />
+          </colgroup>
+          <thead>
+            <tr>
+              <th />
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr
+                key={index}
+                className={
+                  index === 0
+                    ? style.firstLine
+                    : index === rows.length - 1
+                    ? style.lastLine
+                    : ''
+                }
+              >
+                <td>{index + 1}</td>
+                {row.map((cell, indexCell) => (
+                  <td
+                    key={cell.value}
+                    id={`${indexCell}`}
+                    className={style.field}
+                    onClick={(_) => toggleCard(String(index * 5 + indexCell))}
+                    style={{
+                      backgroundColor: fields[index * 5 + indexCell].isOpen
+                        ? 'rgba(0, 0, 0, 0.3)'
+                        : 'rgba(255, 255, 255, 0.9)',
+                      color: fields[index * 5 + indexCell].isOpen ? 'white' : 'black',
+                    }}
+                  >
+                    {isOpenEditor && (
+                      <>
+                        <input
+                          type="text"
+                          name={String(index * 5 + indexCell)}
+                          defaultValue={fields[index * 5 + indexCell].value}
+                          onChange={handleChange}
+                          onClick={(event) => event.stopPropagation()}
+                        />
+                      </>
+                    )}
+                    {cell.isOpen ? cell.value : null}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
         <button className={style.edit} onClick={() => setIsOpenEditor((prev) => !prev)}>
           ✏️
         </button>
@@ -107,9 +143,9 @@ export const Bricks = () => {
 
       <div className={style.bricks}>
         <div className={style.numbers}>
-          <AnimatedNumber animateToNumber={numbers.firstNumber || 0} />
+          <AnimatedNumber animateToNumber={numbers.firstNumber} />
           <span> X </span>
-          <AnimatedNumber animateToNumber={numbers.secondNumber || 0} />
+          <AnimatedNumber animateToNumber={numbers.secondNumber} />
         </div>
         <button onClick={updateNumbers}>Update Numbers</button>
       </div>
