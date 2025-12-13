@@ -137,9 +137,37 @@
 
 .board input {
   font-size: 20px;
-  height: 80px;
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
   margin-bottom: 10px;
   border-radius: 6px;
   border: none;
   margin: 0;
+}
+
+@media (max-width: 1300px) {
+  .Bricks {
+    grid-template-columns: 1fr;
+    align-content: center;
+    padding-top: 100px;
+  }
+
+  .field {
+    font-size: 24px;
+  }
+
+  .board {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .Bricks {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    font-size: 12px;
+  }
 }

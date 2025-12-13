@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import style from './Bricks.module.css';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { bricksActions, bricksSelectors } from '../../store/bricksReducer';
-import AnimatedNumber from 'react-animated-numbers';
+import AnimatedNumber from '../../components/AnimatedNumbers/AnimatedNumbers';
 import React, { useState } from 'react';
 import { getRandomNumber } from '../../utils';
 
@@ -104,7 +104,7 @@ export const Bricks = () => {
                     key={cell.value}
                     id={`${indexCell}`}
                     className={style.field}
-                    onClick={(_) => toggleCard(String(index * 5 + indexCell))}
+                    onClick={(_) => toggleCard(`${index * 5 + indexCell}`)}
                     style={{
                       backgroundColor: fields[index * 5 + indexCell].isOpen
                         ? 'rgba(0, 0, 0, 0.3)'
