@@ -101,7 +101,7 @@ export const Bricks = () => {
                 <td>{index + 1}</td>
                 {row.map((cell, indexCell) => (
                   <td
-                    key={cell.value}
+                    key={indexCell}
                     id={`${indexCell}`}
                     className={style.field}
                     onClick={(_) => toggleCard(`${index * 5 + indexCell}`)}
