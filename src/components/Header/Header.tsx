@@ -13,9 +13,5 @@ export const Header = () => (
         <span>S</span>
       </div>
     </Link>
-    <nav>
-      <Link to={'/'}>Главная</Link>
-      <Link to={'/games'}>Игры</Link>
-    </nav>
   </header>
 );

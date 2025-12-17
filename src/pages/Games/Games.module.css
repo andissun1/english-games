@@ -1,10 +1,23 @@
+.Games {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .Games h1 {
   font-family: inherit;
   font-weight: 300;
   font-size: 28px;
+  grid-column: span 2;
 }
 
 .Games img {
   max-width: 600px;
   width: 100%;
+  border: 1px solid black;
+}
+
+@media (max-width: 600px) {
+  .Games {
+    grid-template-columns: 1fr;
+  }
 }

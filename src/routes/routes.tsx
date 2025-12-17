@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '../pages/layouts/Layout';
-import { Main } from '../pages/main/Main';
 import { Games } from '../pages/Games/Games';
 import { Bricks } from '../pages/Bricks/Bricks';
 
@@ -12,10 +11,6 @@ export const router = createBrowserRouter(
       children: [
         {
           index: true,
-          Component: Main,
-        },
-        {
-          path: 'games',
           Component: Games,
         },
       ],
@@ -26,7 +21,7 @@ export const router = createBrowserRouter(
     },
     {
       path: '*',
-      element: <Navigate to={'/games'} />,
+      element: <Navigate to={'/'} />,
     },
   ],
   { basename: import.meta.env.BASE_URL }
