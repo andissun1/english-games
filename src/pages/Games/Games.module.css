@@ -1,6 +1,7 @@
 .Games {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .Games h1 {
@@ -12,12 +13,18 @@
 
 .Games img {
   max-width: 600px;
+  height: 100%;
   width: 100%;
+  object-fit: cover;
   border: 1px solid black;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .Games {
     grid-template-columns: 1fr;
+  }
+
+  .Games h1 {
+    grid-column: span 1;
   }
 }

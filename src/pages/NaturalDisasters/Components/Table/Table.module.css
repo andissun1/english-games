@@ -1,0 +1,33 @@
+.Table {
+  --mainBlue: rgb(23, 74, 131);
+  --mRed: rgb(238 135 145);
+  --mGreen: rgb(171 204 91);
+  --mLightGreen: rgb(197 219 138);
+  --mOrange: rgb(251 200 112);
+}
+
+.firstColumn {
+  background-color: var(--mOrange);
+}
+
+.secondColumn {
+  background-color: var(--mLightGreen);
+}
+
+.thirdColumn {
+  background-color: var(--mGreen);
+}
+
+.fourthColumn {
+  background-color: var(--mRed);
+}
+
+.board input {
+  background-color: transparent;
+  height: 100%;
+  border: none;
+  width: 100%;
+
+  font-size: 22px;
+  text-align: center;
+}

@@ -1,7 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { Layout } from '../pages/layouts/Layout';
+import { Layout } from '../layouts/Layout';
 import { Games } from '../pages/Games/Games';
 import { Bricks } from '../pages/Bricks/Bricks';
+import { NaturalDisasters } from '../pages/NaturalDisasters/NaturalDisasters';
 
 export const router = createBrowserRouter(
   [
@@ -18,6 +19,10 @@ export const router = createBrowserRouter(
     {
       path: 'bricks',
       Component: Bricks,
+    },
+    {
+      path: 'NaturalDisasters',
+      Component: NaturalDisasters,
     },
     {
       path: '*',
