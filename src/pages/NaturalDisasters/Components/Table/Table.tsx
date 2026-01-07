@@ -10,6 +10,7 @@ type IGameInfo = {
   title: String;
   description: String;
   question: String;
+  image: String;
 };
 
 export const Table = ({
