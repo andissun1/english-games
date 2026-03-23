@@ -103,8 +103,6 @@ export const Board = () => {
     setFields(emptyBoard);
   };
 
-  console.log(123);
-
   return (
     <div className={style.board}>
       <table>
