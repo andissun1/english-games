@@ -100,7 +100,7 @@ export const NaturalDisasters = () => {
             Colour your total score on the thermometer:
             <div className={style.descContent}>
               <img
-                src="/images/temp.png"
+                src="/english-games/images/temp.png"
                 className={style.temper}
                 ref={temper}
                 style={{

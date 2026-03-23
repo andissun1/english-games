@@ -47,7 +47,7 @@ const initialState: IinitialState = localStorage.getItem('disasters')
         { value: 'you know' },
       ],
       points: 0,
-      image: '/images/disasters.jpeg',
+      image: '/english-games/images/disasters.jpeg',
     };
 
 export const disastersSlice = createSlice({

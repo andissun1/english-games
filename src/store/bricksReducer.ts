@@ -14,7 +14,7 @@ const initialState: BricksSlice = localStorage.getItem('bricks')
       numbers: { firstNumber: 0, secondNumber: 0 },
       board: Object.assign(
         {},
-        Array.from({ length: 25 }, () => ({ value: '', isOpen: false }))
+        Array.from({ length: 25 }, () => ({ value: '', isOpen: false })),
       ),
     };
 

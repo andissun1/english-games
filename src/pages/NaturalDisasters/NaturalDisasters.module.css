@@ -62,7 +62,7 @@
   border: 6px solid var(--mainBlue);
   min-height: fit-content;
   height: calc(100% - 52px);
-  background-image: url('/images/disasters.jpeg');
+  background-image: url('/english-games/images/disasters.jpeg');
   background-size: cover;
 }
 

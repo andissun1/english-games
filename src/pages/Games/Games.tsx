@@ -6,10 +6,10 @@ export const Games = () => {
     <div className={style.Games}>
       <h1>Все игры</h1>
       <Link to={'/bricks'}>
-        <img src="/images/Bricks.jpeg" />
+        <img src="/english-games/images/Bricks.jpeg" />
       </Link>
       <Link to={'/NaturalDisasters'}>
-        <img src="/images/NaturalDisasters.png" />
+        <img src="/english-games/images/NaturalDisasters.png" />
       </Link>
     </div>
   );

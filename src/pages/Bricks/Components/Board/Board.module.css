@@ -60,7 +60,8 @@
 }
 
 .edit,
-.save {
+.save,
+.clear {
   font-family: 'Roboto', sans-serif;
 
   font-size: 20px;
@@ -80,6 +81,10 @@
 .smallText {
   font-size: 16px;
   margin: 0;
+}
+
+.clear {
+  right: 100px;
 }
 
 .board input {

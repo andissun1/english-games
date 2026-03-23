@@ -63,8 +63,8 @@ export const Board = () => {
                       key={`input-${currentCellIndex}`}
                       type="text"
                       name={String(currentCellIndex)}
-                      defaultValue={cell.value}
                       onChange={handleChange}
+                      value={cell.value}
                       onClick={(event) => event.stopPropagation()}
                     />
                   )}
@@ -73,7 +73,7 @@ export const Board = () => {
               </Fragment>
             );
           })}
-        </tr>
+        </tr>,
       );
     }
 
@@ -94,6 +94,17 @@ export const Board = () => {
     }
   };
 
+  const clearCells = () => {
+    const emptyBoard = Object.assign(
+      {},
+      ...Array.from({ length: 25 }, (_, i) => ({ [i]: { value: '', isOpen: false } })),
+    );
+    dispatch(bricksActions.setBoard(emptyBoard));
+    setFields(emptyBoard);
+  };
+
+  console.log(123);
+
   return (
     <div className={style.board}>
       <table>
@@ -108,7 +119,10 @@ export const Board = () => {
 
       <button className={style.edit} onClick={openEditor} children="✏️" />
       {isOpenEditor && (
-        <button className={style.save} onClick={saveChanges} children="💾" />
+        <>
+          <button className={style.save} onClick={saveChanges} children="💾" />
+          <button className={style.clear} onClick={clearCells} children="🗑️" />
+        </>
       )}
     </div>
   );
